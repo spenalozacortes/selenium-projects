@@ -1,6 +1,7 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -27,7 +28,13 @@ public class Tests {
         // Main page is displayed
         String actualTitle = driver.getTitle();
         String expectedTitle = "Bienvenidos a Steam";
-        Assert.assertEquals(actualTitle, expectedTitle, "Landed on wrong page!");
+        Assert.assertEquals(actualTitle, expectedTitle, "Landed on wrong main page!");
+
+        // Login page is open
+        driver.findElement(By.cssSelector("a.global_action_link")).click();
+        actualTitle = driver.getTitle();
+        expectedTitle = "Iniciar sesión";
+        Assert.assertEquals(actualTitle, expectedTitle, "Landed on wrong login page!");
     }
 
     @AfterMethod
