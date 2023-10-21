@@ -35,10 +35,8 @@ public class Tests {
         driver.get(url);
 
         // Main page is displayed
-        // TODO: I DON'T LIKE THIS
-        String actualTitle = driver.getTitle();
-        String expectedTitle = "Bienvenidos a Steam";
-        Assert.assertEquals(actualTitle, expectedTitle, "Landed on wrong main page!");
+        WebElement homePageContent = driver.findElement(By.cssSelector(".home_page_content"));
+        Assert.assertTrue(homePageContent.isDisplayed(), "Main page is not open!");
 
         // Click login link
         WebElement loginLink = driver.findElement(By.cssSelector("a.global_action_link"));
