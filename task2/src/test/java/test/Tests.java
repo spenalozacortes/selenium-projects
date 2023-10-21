@@ -1,4 +1,4 @@
-package tests;
+package test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -11,6 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import util.RandomUtils;
 
 import java.time.Duration;
 
@@ -36,7 +37,7 @@ public class Tests {
 
         // Main page is displayed
         WebElement homePageContent = driver.findElement(By.cssSelector(".home_page_content"));
-        Assert.assertTrue(homePageContent.isDisplayed(), "Main page is not open!");
+        Assert.assertTrue(homePageContent.isDisplayed(), "Main page is not opened!");
 
         // Click login link
         WebElement loginLink = driver.findElement(By.cssSelector("a.global_action_link"));
@@ -48,10 +49,26 @@ public class Tests {
         Assert.assertTrue(loginButton.isDisplayed(), "Login page is not opened!");
 
         // Input random strings as credentials
+        String randomUsername = RandomUtils.generateRandomString(8);
+        WebElement usernameField = driver.findElement(By.xpath("//input[@type='text']"));
+        usernameField.sendKeys(randomUsername);
+
+        String randomPassword = RandomUtils.generateRandomString(8);
+        WebElement passwordField = driver.findElement(By.xpath("//input[@type='password']"));
+        passwordField.sendKeys(randomPassword);
+
         // Click sign in button
+        WebElement signInButton = driver.findElement(By.xpath("//button[@type='submit']"));
+        signInButton.click();
 
         // Loading element is displayed
+        WebElement spinner = driver.findElement(By.xpath("//*[contains(@class,'LoadingSpinner')]"));
+        Assert.assertTrue(spinner.isDisplayed(), "Loading element is not displayed!");
+
         // Error text is displayed (after loading element disappearing)
+        wait.until(ExpectedConditions.invisibilityOf(spinner));
+        WebElement errorText = driver.findElement(By.xpath("//*[contains(@class,'FormError')]"));
+        Assert.assertTrue(errorText.isDisplayed(), "Error text is not displayed!");
     }
 
     @AfterMethod
