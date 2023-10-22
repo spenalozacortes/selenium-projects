@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import util.RandomUtils;
 
 public class Test {
     public static void main(String[] args) {
@@ -16,10 +17,14 @@ public class Test {
         // Load web page
         driver.get("http://uitestingplayground.com/sampleapp");
 
+        // Sample App page is displayed
+        WebElement pageName = driver.findElement(By.xpath("//div[@class='container']//*[text()='Sample App']"));
+        Assert.assertTrue(pageName.isDisplayed(), "Sample App page is not displayed!");
+
         // Send values to fields
-        String username = "stephanie";
+        String randomUsername = RandomUtils.generateRandomString(6);
         WebElement loginField = driver.findElement(By.xpath("//input[@name='UserName']"));
-        loginField.sendKeys(username);
+        loginField.sendKeys(randomUsername);
         WebElement passwordField = driver.findElement(By.xpath("//input[@name='Password']"));
         passwordField.sendKeys("pwd");
 
@@ -28,7 +33,7 @@ public class Test {
         button.click();
         WebElement message = driver.findElement(By.id("loginstatus"));
         String actualMessage = message.getText();
-        String expectedMessage = "Welcome, " + username + "!";
+        String expectedMessage = "Welcome, " + randomUsername + "!";
         Assert.assertEquals(actualMessage, expectedMessage, "Welcome message is incorrect!");
 
         // Click button and check log out message
