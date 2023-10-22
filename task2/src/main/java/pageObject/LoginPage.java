@@ -1,7 +1,13 @@
 package pageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import util.BaseElement;
+import util.Browser;
+
+import java.time.Duration;
 
 public class LoginPage {
 
@@ -11,7 +17,14 @@ public class LoginPage {
     private BaseElement spinner = new BaseElement(By.xpath("//*[contains(@class,'LoadingSpinner')]"));
     private BaseElement errorText = new BaseElement(By.xpath("//*[contains(@class,'FormError')]"));
 
+    WebDriverWait wait;
+
+    public LoginPage() {
+        wait = new WebDriverWait(Browser.getDriver(), Duration.ofSeconds(5));
+    }
+
     public boolean isLoginPageOpened() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type='submit']")));
         return loginButton.isDisplayed();
     }
 
@@ -32,6 +45,7 @@ public class LoginPage {
     }
 
     public boolean isErrorTextCorrect(String expectedMessage) {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class,'LoadingSpinner')]")));
         String actualMessage = errorText.getText();
         return actualMessage.equals(expectedMessage);
     }
