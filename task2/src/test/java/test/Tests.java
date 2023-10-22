@@ -7,7 +7,8 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import util.BaseElement;
+import pageObject.LoginPage;
+import pageObject.MainPage;
 import util.Browser;
 import util.RandomUtils;
 
@@ -29,39 +30,34 @@ public class Tests {
     @Test
     public void loginTest() {
         // Main page is displayed
-        BaseElement homePageContent = new BaseElement(By.cssSelector(".home_page_content"));
-        Assert.assertTrue(homePageContent.isDisplayed(), "Main page is not opened!");
+        MainPage mainPage = new MainPage();
+        Assert.assertTrue(mainPage.isMainPageOpened(), "Main page is not opened!");
 
         // Click login link
-        BaseElement loginLink = new BaseElement(By.cssSelector("a.global_action_link"));
-        loginLink.click();
+        mainPage.clickLoginLink();
 
         // Login page is open
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(@class,'SubmitButton')]")));
-        BaseElement loginButton = new BaseElement(By.xpath("//button[contains(@class,'SubmitButton')]"));
-        Assert.assertTrue(loginButton.isDisplayed(), "Login page is not opened!");
+        LoginPage loginPage = new LoginPage();
+        Assert.assertTrue(loginPage.isLoginPageOpened(), "Login page is not opened!");
 
         // Input random strings as credentials
         String randomUsername = RandomUtils.generateRandomString(8);
-        BaseElement usernameField = new BaseElement(By.xpath("//input[@type='text']"));
-        usernameField.sendKeys(randomUsername);
+        loginPage.setUsernameField(randomUsername);
 
         String randomPassword = RandomUtils.generateRandomString(8);
-        BaseElement passwordField = new BaseElement(By.xpath("//input[@type='password']"));
-        passwordField.sendKeys(randomPassword);
+        loginPage.setPasswordField(randomPassword);
 
         // Click sign in button
-        BaseElement signInButton = new BaseElement(By.xpath("//button[@type='submit']"));
-        signInButton.click();
+        loginPage.clickLoginButton();
 
         // Loading element is displayed
-        BaseElement spinner = new BaseElement(By.xpath("//*[contains(@class,'LoadingSpinner')]"));
-        Assert.assertTrue(spinner.isDisplayed(), "Loading element is not displayed!");
+        Assert.assertTrue(loginPage.isSpinnerDisplayed(), "Loading element is not displayed!");
 
         // Error text is displayed (after loading element disappearing)
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class,'LoadingSpinner')]")));
-        BaseElement errorText = new BaseElement(By.xpath("//*[contains(@class,'FormError')]"));
-        Assert.assertTrue(errorText.isDisplayed(), "Error text is not displayed!");
+        String expectedMessage = "Comprueba tu contraseña y nombre de cuenta e inténtalo de nuevo.";
+        Assert.assertTrue(loginPage.isErrorTextCorrect(expectedMessage), "Error message is wrong!");
     }
 
     @AfterMethod
