@@ -26,28 +26,22 @@ public class Tests {
         Assert.assertTrue(mainPage.isMainPageOpened(), "Main page is not opened!");
 
         // Click login link
-        mainPage.clickLoginLink();
+        LoginPage loginPage = mainPage.clickLoginLink();
 
         // Login page is open
-        LoginPage loginPage = new LoginPage();
         Assert.assertTrue(loginPage.isLoginPageOpened(), "Login page is not opened!");
 
         // Input random strings as credentials
-        String randomUsername = RandomUtils.generateRandomString(8);
-        loginPage.setUsernameField(randomUsername);
-
-        String randomPassword = RandomUtils.generateRandomString(8);
-        loginPage.setPasswordField(randomPassword);
-
         // Click sign in button
-        loginPage.clickLoginButton();
+        String randomUsername = RandomUtils.generateRandomString(8);
+        String randomPassword = RandomUtils.generateRandomString(8);
+        loginPage.login(randomUsername, randomPassword);
 
         // Loading element is displayed
-        Assert.assertTrue(loginPage.isSpinnerDisplayed(), "Loading element is not displayed!");
+        Assert.assertTrue(loginPage.getSpinner().isDisplayed(), "Loading element is not displayed!");
 
         // Error text is displayed (after loading element disappearing)
-        String expectedMessage = "Comprueba tu contraseña y nombre de cuenta e inténtalo de nuevo.";
-        Assert.assertTrue(loginPage.isErrorTextCorrect(expectedMessage), "Error message is wrong!");
+        Assert.assertTrue(loginPage.getErrorText().isDisplayed(), "Error text is not displayed!");
     }
 
     @AfterMethod

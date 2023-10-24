@@ -7,13 +7,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class WaitUtils {
-    public static void waitForElementToAppear(By findBy) {
-        WebDriverWait wait = new WebDriverWait(Browser.getDriver(), Duration.ofSeconds(5));
+    public static void waitForElementToAppear(By findBy, int duration) {
+        WebDriverWait wait = new WebDriverWait(Browser.getDriver(), Duration.ofSeconds(duration));
         wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
     }
 
-    public static void waitForElementToDisappear(By findBy) {
-        WebDriverWait wait = new WebDriverWait(Browser.getDriver(), Duration.ofSeconds(5));
+    public static void waitForElementToDisappear(By findBy, int duration) {
+        WebDriverWait wait = new WebDriverWait(Browser.getDriver(), Duration.ofSeconds(duration));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(findBy));
     }
 }
