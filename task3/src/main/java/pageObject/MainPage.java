@@ -9,7 +9,7 @@ import java.util.Set;
 public class MainPage {
     private BaseElement privacyLink = new BaseElement(By.cssSelector("#footer_text a[href*=privacy_agreement]"));
 
-    public PrivacyPolicyPage clickPrivacyLink() {
+    public void clickPrivacyLink() {
         privacyLink.click();
 
         // Switches to new tab
@@ -17,7 +17,5 @@ public class MainPage {
         Set<String> allWindows = Browser.getDriver().getWindowHandles(); // order of handles in set is arbitrary
         allWindows.remove(firstWindow);
         Browser.getDriver().switchTo().window(allWindows.iterator().next());
-
-        return new PrivacyPolicyPage();
     }
 }

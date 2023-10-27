@@ -9,16 +9,16 @@ public class PrivacyPolicyPage {
     private BaseElement languageList = new BaseElement(By.id("languages"));
     private BaseElement revisionDate = new BaseElement(By.xpath("//*[@id='newsColumn']//*[contains(text(), '2023')]"));
 
+    public String getRevisionDate() {
+        return revisionDate.getText();
+    }
+
     public boolean isPrivacyPageOpened() {
         return privacyImg.isDisplayed();
     }
 
-    public BaseElement getLanguageList() {
-        return languageList;
-    }
-
-    public BaseElement getRevisionDate() {
-        return revisionDate;
+    public boolean isLanguageListDisplayed() {
+        return languageList.isDisplayed();
     }
 
     public boolean isLanguageListComplete() {

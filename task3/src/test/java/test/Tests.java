@@ -22,20 +22,22 @@ public class Tests {
     public void test() {
         // Scroll* and open privacy policy
         MainPage mainPage = new MainPage();
-        PrivacyPolicyPage privacyPolicyPage = mainPage.clickPrivacyLink();
+        mainPage.clickPrivacyLink();
 
         // Privacy policy page is open in new tab
+        PrivacyPolicyPage privacyPolicyPage = new PrivacyPolicyPage();
         Assert.assertTrue(privacyPolicyPage.isPrivacyPageOpened(), "Privacy policy page is not opened!");
 
         // Switch language elements list displayed
-        Assert.assertTrue(privacyPolicyPage.getLanguageList().isDisplayed(), "Language list is not displayed!");
+        Assert.assertTrue(privacyPolicyPage.isLanguageListDisplayed(), "Language list is not displayed!");
 
         // Supported languages: English, Spanish, French, German
         // Italian, Russian, Japanese, Portuguese, Brazilian
         Assert.assertTrue(privacyPolicyPage.isLanguageListComplete(), "Language list is not complete!");
 
         // Policy revision signed in 2023
-        Assert.assertTrue(privacyPolicyPage.getRevisionDate().getText().contains("2023"), "Revision date is wrong!");
+        // TODO: For each language?
+        Assert.assertTrue(privacyPolicyPage.getRevisionDate().contains("2023"), "Revision date is wrong!");
     }
 
     @AfterMethod
