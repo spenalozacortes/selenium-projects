@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class BaseElement {
+public abstract class BaseElement {
     private By locator;
 
     public BaseElement(By locator) {
@@ -22,10 +22,6 @@ public class BaseElement {
 
     public boolean isDisplayed() {
         return getElement().isDisplayed();
-    }
-
-    public void sendKeys(String text) {
-        getElement().sendKeys(text);
     }
 
     protected WebElement getElement() {

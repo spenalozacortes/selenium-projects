@@ -1,13 +1,14 @@
 package pageObject;
 
 import org.openqa.selenium.By;
-import util.BaseElement;
+
 import util.Browser;
+import util.Link;
 
 import java.util.Set;
 
 public class MainPage {
-    private BaseElement privacyLink = new BaseElement(By.cssSelector("#footer_text a[href*=privacy_agreement]"));
+    private Link privacyLink = new Link(By.cssSelector("#footer_text a[href*=privacy_agreement]"));
 
     public void clickPrivacyLink() {
         privacyLink.click();

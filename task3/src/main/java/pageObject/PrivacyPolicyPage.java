@@ -2,19 +2,20 @@ package pageObject;
 
 import org.openqa.selenium.By;
 import util.BaseElement;
+import util.Container;
+import util.Text;
 
 public class PrivacyPolicyPage {
 
-    private BaseElement privacyImg = new BaseElement(By.cssSelector("img[src*='title_privacy']"));
-    private BaseElement languageList = new BaseElement(By.id("languages"));
-    private BaseElement revisionDate = new BaseElement(By.xpath("//*[@id='newsColumn']//*[contains(text(), '2023')]"));
+    private Container languageList = new Container(By.id("languages"));
+    private Text revisionDate = new Text(By.xpath("//*[@id='newsColumn']//*[contains(text(), '2023')]"));
 
     public String getRevisionDate() {
         return revisionDate.getText();
     }
 
     public boolean isPrivacyPageOpened() {
-        return privacyImg.isDisplayed();
+        return languageList.isDisplayed();
     }
 
     public boolean isLanguageListDisplayed() {
