@@ -26,18 +26,18 @@ public class LoginPage {
         loginButton.click();
     }
 
-    public BaseElement getSpinner() {
-        WaitUtils.waitForElementToAppear(spinnerBy, 5);
-        return spinner;
-    }
-
-    public BaseElement getErrorText() {
-        WaitUtils.waitForElementToDisappear(spinnerBy, 5);
-        return errorText;
-    }
-
     public boolean isLoginPageOpened() {
         WaitUtils.waitForElementToAppear(loginButtonBy, 5);
         return loginButton.isDisplayed();
+    }
+
+    public boolean isSpinnerDisplayed() {
+        WaitUtils.waitForElementToAppear(spinnerBy, 5);
+        return spinner.isDisplayed();
+    }
+
+    public boolean isErrorMessageDisplayed() {
+        WaitUtils.waitForElementToDisappear(spinnerBy, 5);
+        return errorText.isDisplayed();
     }
 }

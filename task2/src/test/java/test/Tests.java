@@ -42,10 +42,10 @@ public class Tests {
         loginPage.clickLoginButton();
 
         // Loading element is displayed
-        Assert.assertTrue(loginPage.getSpinner().isDisplayed(), "Loading element is not displayed!");
+        Assert.assertTrue(loginPage.isSpinnerDisplayed(), "Loading element is not displayed!");
 
         // Error text is displayed (after loading element disappearing)
-        Assert.assertTrue(loginPage.getErrorText().isDisplayed(), "Error text is not displayed!");
+        Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Error text is not displayed!");
     }
 
     @AfterMethod
