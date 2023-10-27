@@ -12,8 +12,7 @@ public class MainPage {
         return homePageContent.isDisplayed();
     }
 
-    public LoginPage clickLoginLink() {
+    public void clickLoginLink() {
         loginLink.click();
-        return new LoginPage();
     }
 }

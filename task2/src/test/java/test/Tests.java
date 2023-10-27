@@ -26,9 +26,10 @@ public class Tests {
         Assert.assertTrue(mainPage.isMainPageOpened(), "Main page is not opened!");
 
         // Click login link
-        LoginPage loginPage = mainPage.clickLoginLink();
+        mainPage.clickLoginLink();
 
         // Login page is open
+        LoginPage loginPage = new LoginPage();
         Assert.assertTrue(loginPage.isLoginPageOpened(), "Login page is not opened!");
 
         // Input random strings as credentials
