@@ -14,6 +14,18 @@ public class LoginPage {
     private BaseElement spinner = new BaseElement(spinnerBy);
     private BaseElement errorText = new BaseElement(By.xpath("//*[contains(@class,'FormError')]"));
 
+    public void setUsernameField(String userName) {
+        usernameField.sendKeys(userName);
+    }
+
+    public void setPasswordField(String password) {
+        passwordField.sendKeys(password);
+    }
+
+    public void clickLoginButton() {
+        loginButton.click();
+    }
+
     public BaseElement getSpinner() {
         WaitUtils.waitForElementToAppear(spinnerBy, 5);
         return spinner;
@@ -27,11 +39,5 @@ public class LoginPage {
     public boolean isLoginPageOpened() {
         WaitUtils.waitForElementToAppear(loginButtonBy, 5);
         return loginButton.isDisplayed();
-    }
-
-    public void login(String userName, String password) {
-        usernameField.sendKeys(userName);
-        passwordField.sendKeys(password);
-        loginButton.click();
     }
 }

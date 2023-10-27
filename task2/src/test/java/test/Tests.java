@@ -33,10 +33,13 @@ public class Tests {
         Assert.assertTrue(loginPage.isLoginPageOpened(), "Login page is not opened!");
 
         // Input random strings as credentials
-        // Click sign in button
         String randomUsername = RandomUtils.generateRandomString(8);
         String randomPassword = RandomUtils.generateRandomString(8);
-        loginPage.login(randomUsername, randomPassword);
+        loginPage.setUsernameField(randomUsername);
+        loginPage.setPasswordField(randomPassword);
+
+        // Click sign in button
+        loginPage.clickLoginButton();
 
         // Loading element is displayed
         Assert.assertTrue(loginPage.getSpinner().isDisplayed(), "Loading element is not displayed!");
