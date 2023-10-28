@@ -8,9 +8,14 @@ public class Browser {
     private static WebDriver driver;
 
     public static WebDriver getDriver() {
+        ConfigReader configReader = new ConfigReader();
+        String browser = configReader.getBrowser();
+
         if (driver == null) {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+            if (browser.equalsIgnoreCase("chrome")) {
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+            } // ... logic for other browsers
         }
         return driver;
     }
