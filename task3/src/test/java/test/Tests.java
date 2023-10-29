@@ -1,6 +1,5 @@
 package test;
 
-import com.google.gson.JsonArray;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -9,7 +8,6 @@ import pageObject.MainPage;
 import pageObject.PrivacyPolicyPage;
 import util.Browser;
 import util.ConfigReader;
-import util.DataReader;
 
 public class Tests {
     ConfigReader configReader = new ConfigReader();
@@ -37,11 +35,10 @@ public class Tests {
 
         // Supported languages: English, Spanish, French, German
         // Italian, Russian, Japanese, Portuguese, Brazilian
-        // Assert.assertTrue(privacyPolicyPage.isLanguageListComplete(), "Language list is not complete!");
+        Assert.assertTrue(privacyPolicyPage.isLanguageListComplete(), "Language list is not complete!");
 
         // Policy revision signed in 2023
-        // TODO: For each language?
-        Assert.assertTrue(privacyPolicyPage.getRevisionDate().contains("2023"), "Revision date is wrong!");
+        Assert.assertTrue(privacyPolicyPage.isPrivacySignedCorrectly(), "Revision date is wrong!");
     }
 
     @AfterMethod
