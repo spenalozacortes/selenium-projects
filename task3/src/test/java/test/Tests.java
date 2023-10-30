@@ -22,7 +22,7 @@ public class Tests {
 
     @Test
     public void test() {
-        // Scroll* and open privacy policy
+        // Scroll and open privacy policy
         MainPage mainPage = new MainPage();
         mainPage.clickPrivacyLink();
 
