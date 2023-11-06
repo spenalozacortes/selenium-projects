@@ -16,7 +16,9 @@ public class MostPlayedPage extends BaseForm {
     }
 
     public int getNumberOfCurrentPlayers(int index) throws ParseException {
-        List<WebElement> currentPlayers =  Browser.getDriver().findElements(By.xpath("//td[contains(@class, 'ConcurrentCell')]"));
-        return ParseUtils.formatToInt(currentPlayers, index);
+        List<WebElement> currentPlayersList =  Browser.getDriver().findElements(By.xpath("//td[contains(@class, 'ConcurrentCell')]"));
+        String currentPlayers = currentPlayersList.get(index).getText();
+
+        return ParseUtils.formatToInt(currentPlayers);
     }
 }
