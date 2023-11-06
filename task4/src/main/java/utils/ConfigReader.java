@@ -25,4 +25,8 @@ public class ConfigReader {
     public String getBaseUrl() {
         return config.get("url").getAsString();
     }
+
+    public int getWait() {
+        return config.get("waitSeconds").getAsInt();
+    }
 }

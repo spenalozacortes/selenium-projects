@@ -2,5 +2,6 @@
   "webdriver": {
     "browser": "chrome"
   },
-  "url": "https://store.steampowered.com/"
+  "url": "https://store.steampowered.com/",
+  "waitSeconds": 5
 }

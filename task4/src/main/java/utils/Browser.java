@@ -1,8 +1,10 @@
 package utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 public class Browser {
     private static WebDriver driver;
@@ -23,5 +25,10 @@ public class Browser {
     public static void quitDriver() {
         driver.quit();
         driver = null;
+    }
+
+    public static void moveToElement(By locator) {
+        Actions a = new Actions(getDriver());
+        a.moveToElement(getDriver().findElement(locator)).build().perform();
     }
 }

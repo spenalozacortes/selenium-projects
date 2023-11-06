@@ -21,6 +21,7 @@ public abstract class BaseElement {
     }
 
     public boolean isDisplayed() {
+        WaitUtils.waitForElementToAppear(locator);
         return getElement().isDisplayed();
     }
 

@@ -10,7 +10,6 @@ import utils.Browser;
 import utils.ConfigReader;
 
 import java.text.ParseException;
-import java.util.List;
 
 public class Tests {
     ConfigReader configReader = new ConfigReader();
@@ -31,14 +30,14 @@ public class Tests {
     public void playedGames() throws ParseException {
         // Main page is open
         MainPage mainPage = new MainPage();
-        Assert.assertTrue(mainPage.isMainPageOpened(), "Main page is not open!");
+        Assert.assertTrue(mainPage.isPageOpen(), "Main page is not open!");
 
         // Move cursor to new and noteworthy and click 'most played' in a dropdown
-        mainPage.clickMostPlayed();
+        mainPage.middleNavigationForm.clickMostPlayed();
 
         // Most played page is open
         MostPlayedPage mostPlayedPage = new MostPlayedPage();
-        Assert.assertTrue(mostPlayedPage.isMostPlayedPageOpened(), "Most played page is not open!");
+        Assert.assertTrue(mostPlayedPage.isPageOpen(), "Most played page is not open!");
 
         // Retrieve number of current players for 1st and 2nd game
         int players1stgame = mostPlayedPage.getNumberOfCurrentPlayers(0);
