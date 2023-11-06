@@ -14,6 +14,7 @@ import java.text.ParseException;
 public class Tests {
     ConfigReader configReader = new ConfigReader();
     String url = configReader.getBaseUrl();
+    
     @BeforeMethod
     public void setup() {
         // Navigate to main page
