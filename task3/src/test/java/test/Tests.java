@@ -35,6 +35,7 @@ public class Tests {
 
         // Privacy policy page is open in new tab
         PrivacyPolicyPage privacyPolicyPage = new PrivacyPolicyPage();
+        privacyPolicyPage.setRevisionDateText(revisionDate);
         Assert.assertTrue(privacyPolicyPage.isPrivacyPageOpened(), "Privacy policy page is not opened!");
 
         // Switch language elements list displayed

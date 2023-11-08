@@ -4,6 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.Set;
+
 public class Browser {
     private static WebDriver driver;
 
@@ -23,5 +25,12 @@ public class Browser {
     public static void quitDriver() {
         driver.quit();
         driver = null;
+    }
+
+    public static void switchTab() {
+        String firstWindow = getDriver().getWindowHandle();
+        Set<String> allWindows = getDriver().getWindowHandles();
+        allWindows.remove(firstWindow);
+        getDriver().switchTo().window(allWindows.iterator().next());
     }
 }

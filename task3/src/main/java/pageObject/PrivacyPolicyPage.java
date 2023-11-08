@@ -10,7 +10,11 @@ import util.Text;
 public class PrivacyPolicyPage {
 
     private Container languageList = new Container(By.id("languages"));
-    private Text revisionDate = new Text(By.xpath("//*[@id='main']//*[contains(text(), '2023')]"));
+    private Text revisionDate;
+
+    public void setRevisionDateText(String revisionDate) {
+        this.revisionDate = new Text(By.xpath("//*[@id='main']//*[contains(text(), '" + revisionDate + "')]"));
+    }
 
     public String getRevisionDate() {
         return revisionDate.getText();
