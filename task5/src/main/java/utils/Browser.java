@@ -1,10 +1,9 @@
 package utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class Browser {
     private static WebDriver driver;
@@ -16,7 +15,9 @@ public class Browser {
         if (driver == null) {
             if (browser.equalsIgnoreCase("chrome")) {
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--lang=en-US");
+                driver = new ChromeDriver(options);
             } // ... logic for other browsers
         }
         return driver;

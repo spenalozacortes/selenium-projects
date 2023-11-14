@@ -20,7 +20,7 @@ public class LeftMenuForm extends BaseForm {
     }
 
     public void untickAllCheckboxes() {
-        List<WebElement> checkboxes = Browser.getDriver().findElements(By.xpath("(//*[contains(@class,'FilterSubSection')])[1]//*[@id='base']"));
+        List<WebElement> checkboxes = Browser.getDriver().findElements(By.xpath("(//*[contains(@class, 'FilterSubSection')])[1]//*[@class='DialogCheckbox Active']"));
         for (WebElement checkbox : checkboxes) {
             checkbox.click();
         }

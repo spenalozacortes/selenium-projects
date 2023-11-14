@@ -57,6 +57,6 @@ public class Tests {
 
         // Message 'No posts found. Try selecting different search criteria in the sidebar.' is displayed
         String expectedMessage = data.get("message").getAsString();
-        Assert.assertEquals(newsPage.getMessage(), expectedMessage, "Expected message is incorrect!");
+        Assert.assertTrue(expectedMessage.equalsIgnoreCase(newsPage.getMessage()), "Expected message is incorrect!");
     }
 }

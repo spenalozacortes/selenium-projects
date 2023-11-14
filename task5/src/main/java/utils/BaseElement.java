@@ -3,8 +3,6 @@ package utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.List;
-
 public abstract class BaseElement {
     private By locator;
 
