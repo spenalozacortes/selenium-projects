@@ -1,0 +1,6 @@
+{
+  "webdriver": {
+    "browser": "chrome"
+  },
+  "url": "https://store.steampowered.com/"
+}
